@@ -9,7 +9,9 @@
   %body.container
     %hader
       %navi
-        navi
+        = nav do
+          = link_to 'Home', root_path
+          = link_to 'Teams', teams_path
     %article
       = yield
     %footer
