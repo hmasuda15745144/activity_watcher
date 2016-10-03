@@ -1,6 +1,6 @@
 %h1 Listing teams
 
-%table{class: :table}
+%table.table
   %thead
     %tr
       %th Name
@@ -16,10 +16,8 @@
         %td= team.name
         %td= team.github_url
         %td= team.web_url
-        %td= link_to 'Show', team
-        %td= link_to 'Edit', edit_team_path(team)
-        %td= link_to 'Destroy', team, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= button_to 'Show', team, method: :get, context: :default
+        %td= button_to 'Edit', edit_team_path(team), method: :get, context: :default
+        %td= button_to 'Destroy', team, method: :delete, :data => { :confirm => 'Are you sure?' }, context: :default
 
-%br
-
-= link_to 'New Team', new_team_path
+= button_to 'New Team', new_team_path, method: :get, context: :default, layout: :block
