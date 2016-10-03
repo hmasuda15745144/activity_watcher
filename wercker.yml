@@ -32,9 +32,9 @@ build:
         name: Run RSpec
         code: bundle exec rspec
 
-  after-steps:
-    - slack-notifier:
-      url: $SLACK_URL
-      channel: price-seek-notify
-      username: werckerbot
-      notify_on: failed
+  # after-steps:
+  #   - slack-notifier:
+  #     url: $SLACK_URL
+  #     channel: price-seek-notify
+  #     username: werckerbot
+  #     notify_on: failed
