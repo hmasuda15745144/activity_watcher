@@ -156,6 +156,8 @@ group :test do
   gem 'rails-controller-testing'
 end
 
+##############################################################################
+# by yc
 group :test do
   gem 'simplecov'
   gem 'psych'
@@ -163,3 +165,7 @@ end
 
 gem 'rails_admin', '~> 1.0'
 gem 'rails_admin-i18n'
+
+group :development, :test do
+  gem 'guard-bundler', require: false
+end
