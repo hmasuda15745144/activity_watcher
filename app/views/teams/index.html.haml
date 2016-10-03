@@ -1,0 +1,25 @@
+%h1 Listing teams
+
+%table{class: :table}
+  %thead
+    %tr
+      %th Name
+      %th Github url
+      %th Web url
+      %th
+      %th
+      %th
+
+  %tbody
+    - @teams.each do |team|
+      %tr
+        %td= team.name
+        %td= team.github_url
+        %td= team.web_url
+        %td= link_to 'Show', team
+        %td= link_to 'Edit', edit_team_path(team)
+        %td= link_to 'Destroy', team, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Team', new_team_path

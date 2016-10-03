@@ -1,0 +1,10 @@
+= simple_form_for(@team) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :github_url
+    = f.input :web_url
+
+  .form-actions
+    = f.button :submit
