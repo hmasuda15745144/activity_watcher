@@ -155,3 +155,7 @@ group :test do
   # This gem brings back assigns to your controller tests
   gem 'rails-controller-testing'
 end
+
+group :test do
+  gem 'simplecov'
+end
