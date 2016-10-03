@@ -169,3 +169,5 @@ gem 'rails_admin-i18n'
 group :development, :test do
   gem 'guard-bundler', require: false
 end
+
+gem 'bh', '~> 1.3'
