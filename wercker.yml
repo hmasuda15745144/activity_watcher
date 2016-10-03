@@ -9,7 +9,7 @@ services:
       POSTGRES_PASSWORD: secret_password
 
 # http://devcenter.wercker.com/docs/pipelines/index.html
-unit-test:
+build:
   # http://devcenter.wercker.com/docs/steps/index.html
   steps:
     - bundle-install:
