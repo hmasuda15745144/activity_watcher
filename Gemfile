@@ -158,6 +158,7 @@ end
 
 group :test do
   gem 'simplecov'
+  gem 'psych'
 end
 
 gem 'rails_admin', '~> 1.0'
