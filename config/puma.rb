@@ -1,3 +1,5 @@
+require 'rails'
+
 # Workers are forked web-server processes
 workers ENV.fetch('RAILS_WORKERS') { Rails.env.development? ? 1 : 2 }.to_i
 
