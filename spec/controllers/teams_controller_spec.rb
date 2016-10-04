@@ -24,11 +24,19 @@ RSpec.describe TeamsController, type: :controller do
   # Team. As you add validations to Team, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      name:    'name',
+      source:  Faker::Internet.url('github.com'),
+      service: Faker::Internet.url('herokuapp.com')
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      name:    nil,
+      source:  nil,
+      service: nil
+    }
   }
 
   # This should return the minimal set of values that should be in the session
@@ -103,14 +111,22 @@ RSpec.describe TeamsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          name:    'new name',
+          source:  Faker::Internet.url('github.com'),
+          service: Faker::Internet.url('herokuapp.com')
+        }
       }
 
       it "updates the requested team" do
         team = Team.create! valid_attributes
         put :update, params: {id: team.to_param, team: new_attributes}, session: valid_session
         team.reload
-        skip("Add assertions for updated state")
+
+        new_team = assigns(:team)
+        expect(new_team.name).to    eq(new_attributes[:name])
+        expect(new_team.source).to  eq(new_attributes[:source])
+        expect(new_team.service).to eq(new_attributes[:service])
       end
 
       it "assigns the requested team as @team" do
