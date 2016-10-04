@@ -1,3 +1,5 @@
+require 'octokit'
+
 class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :edit, :update, :destroy]
 
@@ -10,6 +12,10 @@ class TeamsController < ApplicationController
   # GET /teams/1
   # GET /teams/1.json
   def show
+    client = Octokit::Client.new
+    repo = @team.source.match(/.*\/(.*\/.*)/)[1]
+    contributors = client.contributors(repo)
+    @contributors = contributors
   end
 
   # GET /teams/new

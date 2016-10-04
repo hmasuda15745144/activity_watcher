@@ -26,7 +26,7 @@ RSpec.describe TeamsController, type: :controller do
   let(:valid_attributes) {
     {
       name:    'name',
-      source:  Faker::Internet.url('github.com'),
+      source:  'https://github.com/terra-yucco/ruthenium',
       service: Faker::Internet.url('herokuapp.com')
     }
   }
@@ -57,6 +57,12 @@ RSpec.describe TeamsController, type: :controller do
       team = Team.create! valid_attributes
       get :show, params: {id: team.to_param}, session: valid_session
       expect(assigns(:team)).to eq(team)
+    end
+
+    it "assigns the GitHub contributors as @contributers" do
+      team = Team.create! valid_attributes
+      get :show, params: {id: team.to_param}, session: valid_session
+      expect(assigns(:contributors)).to be_kind_of Array
     end
   end
 
@@ -171,5 +177,4 @@ RSpec.describe TeamsController, type: :controller do
       expect(response).to redirect_to(teams_url)
     end
   end
-
 end
