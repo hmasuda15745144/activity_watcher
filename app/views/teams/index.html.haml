@@ -7,17 +7,13 @@
       %th Github url
       %th Web url
       %th
-      %th
-      %th
 
   %tbody
     - @teams.each do |team|
       %tr
-        %td= team.name
-        %td= team.github_url
-        %td= team.web_url
-        %td= button_to 'Show', team, method: :get, context: :default
-        %td= button_to 'Edit', edit_team_path(team), method: :get, context: :default
+        %td= link_to team.name, team
+        %td= link_to team.github_url, team.github_url
+        %td= link_to team.web_url, team.web_url
         %td= button_to 'Destroy', team, method: :delete, :data => { :confirm => 'Are you sure?' }, context: :default
 
 = button_to 'New Team', new_team_path, method: :get, context: :default, layout: :block
