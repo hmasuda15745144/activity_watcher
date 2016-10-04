@@ -171,3 +171,4 @@ group :development, :test do
 end
 
 gem 'bh', '~> 1.3'
+gem 'octokit'
