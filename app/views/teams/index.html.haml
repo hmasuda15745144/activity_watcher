@@ -12,8 +12,8 @@
     - @teams.each do |team|
       %tr
         %td= link_to team.name, team
-        %td= link_to team.github_url, team.github_url
-        %td= link_to team.web_url, team.web_url
+        %td= link_to team.source, team.source
+        %td= link_to team.service, team.service
         %td= button_to 'Destroy', team, method: :delete, :data => { :confirm => 'Are you sure?' }, context: :default
 
 = button_to 'New Team', new_team_path, method: :get, context: :default, layout: :block
