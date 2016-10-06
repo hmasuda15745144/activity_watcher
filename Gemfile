@@ -165,7 +165,7 @@ end
 
 gem 'rails_admin', '~> 1.0'
 gem 'rails_admin-i18n'
-gem 'rails_admin_import', git: 'git@github.com:stephskardal/rails_admin_import.git'
+gem 'rails_admin_import', git: 'https://github.com/stephskardal/rails_admin_import.git'
 
 group :development, :test do
   gem 'guard-bundler', require: false
