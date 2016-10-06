@@ -1,6 +1,11 @@
 # GitHub Activity Watcher
 
+## Service
 * [Team Activity Watcher](https://activity-watcher.herokuapp.com/)
+
+## CI
+* [activity_watcher](https://app.wercker.com/ychubachi/activity_watcher)
+
 
 # README
 
