@@ -24,11 +24,19 @@ RSpec.describe MembersController, type: :controller do
   # Member. As you add validations to Member, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      login: Faker::Internet.user_name,
+      name:  Faker::Name.name,
+      idno:  Faker::Number.number(8)
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      login: nil,
+      name: nil,
+      idno: nil
+    }
   }
 
   # This should return the minimal set of values that should be in the session
@@ -103,14 +111,22 @@ RSpec.describe MembersController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          login: Faker::Internet.user_name,
+          name:  Faker::Name.name,
+          idno:  Faker::Number.number(8)
+        }
       }
 
       it "updates the requested member" do
         member = Member.create! valid_attributes
         put :update, params: {id: member.to_param, member: new_attributes}, session: valid_session
         member.reload
-        skip("Add assertions for updated state")
+
+        new_member = assigns(:member)
+        expect(new_member.login).to eq(new_attributes[:login])
+        expect(new_member.name).to  eq(new_attributes[:name])
+        expect(new_member.idno).to  eq(new_attributes[:idno])
       end
 
       it "assigns the requested member as @member" do
