@@ -1,6 +1,7 @@
 %ul
   - @results.each do |team|
     %h2= team[:name]
+    %h3 Profile
     %dl
       %dt Souce
       %dd= link_to team[:source], team[:source]
