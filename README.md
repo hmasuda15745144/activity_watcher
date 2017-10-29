@@ -5,7 +5,7 @@
 
 ## CI
 * [activity_watcher](https://app.wercker.com/ychubachi/activity_watcher)
-
+* [![Build Status](https://travis-ci.org/chubachi-pt-2017/activity_watcher-2.svg?branch=master)](https://travis-ci.org/chubachi-pt-2017/activity_watcher-2)
 
 # README
 
