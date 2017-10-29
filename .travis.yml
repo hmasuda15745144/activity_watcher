@@ -1,3 +1,4 @@
-services : - postgresql
+services:
+  - postgresql
 language: ruby
 cache: bundler
