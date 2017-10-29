@@ -1,11 +1,10 @@
 # GitHub Activity Watcher
 
 ## Service
-* [Team Activity Watcher](https://activity-watcher.herokuapp.com/)
+* [Team Activity Watcher](https://github-activity-watcher.herokuapp.com/)
 
 ## CI
-* [activity_watcher](https://app.wercker.com/ychubachi/activity_watcher)
-* [![Build Status](https://travis-ci.org/chubachi-pt-2017/activity_watcher-2.svg?branch=master)](https://travis-ci.org/chubachi-pt-2017/activity_watcher-2)
+[![Build Status](https://travis-ci.org/chubachi-pt-2017/activity_watcher-2.svg?branch=master)](https://travis-ci.org/chubachi-pt-2017/activity_watcher-2)
 
 # README
 

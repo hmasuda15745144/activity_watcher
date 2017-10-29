@@ -1,15 +1,17 @@
 language: ruby
-
 services:
-  - postgresql
-
+- postgresql
 bundler_args: "--without development --deployment"
-
 cache: bundler
-
 before_script:
-  - cp config/database.travis.yml config/database.yml
-  - bundle exec rake db:setup
-
+- cp config/database.travis.yml config/database.yml
+- bundle exec rake db:setup
 script:
-  - bundle exec rspec spec/
+- bundle exec rspec spec/
+deploy:
+  provider: heroku
+  api_key:
+    secure: '09M6573nQBg9JpBmCob4nRZc2S16xTuZwgdu/y762YxhfPPzKLqMLz2NpP1ZMNFUaBdeUmGGHqQOPToMSYR9vvKYo0YZA67lkuLFN8zYMtSaD9SDdiWOoWD+v4rbEVQKvQhKTqQ+/MyyW6AF7IR2mPwu2JytwulxHzpt7WWpmoujKt++52uj41ZjcWANiEarSp4rhxnBLTxzQbrLGf2Bdw/pUTtxh01bKwvhb9B8FxajbCxOkV3YTq5SNNFTB+4dTgfPKVOauBBj42XkFhuIV/aqJnVmlBS/885UXkxYTj7sVygzVsWi15gHo6J5MKhYcgcBFOCCkDTwie5wK+ZyXLH1yTjhSZlnaC4qDtLsardeVTJWT0vae5OWYmDIexxYeXkLaz3SS5goRT5kV/cHbSS6SuPq25EIF5+FUGibebu5ZdSDosW+rDVFTgJTNuO16KIK5iPovVFrNoFyDCjbBZVchQn4qzPcN3r/CTUuM4xJ5rkQWsilT6tluVD6rSFqpGicSilPJ58XW9v5AYbHPqBVfp07ZyU8/YQc9XBoGXq1rRScSqBknKGA4ukN3Ijw/li5iMqRT8KwlxiShSHfpIMQVLShsnRRa/x5lbPeyEf+kg5GQ2yTSS1q2nJIRcbA0hFeFlu46ekX6pbxpyEGmJJEk+hrwtoACyu4wtCwOAE='
+  app: github-activity-watcher
+  on:
+    repo: chubachi-pt-2017/activity_watcher-2
