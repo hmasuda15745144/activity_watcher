@@ -5,9 +5,10 @@ if [[ ! $CHKUSERNAME = '' ]]; then
     exit 1
 fi
 
-POSTGRES='postgres'
-# for new release of PostgreSQL.
-#POSTGRES='postgres-9.6'
+#POSTGRES='postgres'
+POSTGRES='postgresql'
+### for new release of PostgreSQL.
+##POSTGRES='postgres-9.6'
 
 sudo service $POSTGRES restart
 if [ $? -ne 0 ]; then
@@ -57,4 +58,3 @@ if [ $? -eq 0 ]; then
     exec bash -l
     echo "Complete!"
 fi
-
