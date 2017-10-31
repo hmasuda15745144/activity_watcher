@@ -12,7 +12,7 @@ class ActivityWatcher::TeamsController < ActivityWatcher::Base
   # GET /teams/1
   # GET /teams/1.json
   def show
-    client = Octokit::Client.new
+    client = Octokit::Client.new access_token: ENV['GITHUB_ACCESS_TOKEN']
     repo = @team.source.match(/.*\/(.*\/.*)/)[1]
     contributors = client.contributors(repo)
     @contributors = contributors
