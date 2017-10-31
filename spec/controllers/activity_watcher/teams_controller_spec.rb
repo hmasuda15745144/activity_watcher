@@ -46,6 +46,7 @@ RSpec.describe ActivityWatcher::TeamsController, type: :controller do
 
   describe "GET #index" do
     it "assigns all teams as @teams" do
+      controller.stub(:logged_in?) {true}
       team = Team.create! valid_attributes
       get :index, params: {}, session: valid_session
       expect(assigns(:teams)).to eq([team])
@@ -54,12 +55,14 @@ RSpec.describe ActivityWatcher::TeamsController, type: :controller do
 
   describe "GET #show" do
     it "assigns the requested team as @team" do
+      controller.stub(:logged_in?) {true}
       team = Team.create! valid_attributes
       get :show, params: {id: team.to_param}, session: valid_session
       expect(assigns(:team)).to eq(team)
     end
 
     it "assigns the GitHub contributors as @contributers" do
+      controller.stub(:logged_in?) {true}
       team = Team.create! valid_attributes
       get :show, params: {id: team.to_param}, session: valid_session
       expect(assigns(:contributors)).to be_kind_of Array
@@ -68,6 +71,7 @@ RSpec.describe ActivityWatcher::TeamsController, type: :controller do
 
   describe "GET #new" do
     it "assigns a new team as @team" do
+      controller.stub(:logged_in?) {true}
       get :new, params: {}, session: valid_session
       expect(assigns(:team)).to be_a_new(Team)
     end
@@ -75,6 +79,7 @@ RSpec.describe ActivityWatcher::TeamsController, type: :controller do
 
   describe "GET #edit" do
     it "assigns the requested team as @team" do
+      controller.stub(:logged_in?) {true}
       team = Team.create! valid_attributes
       get :edit, params: {id: team.to_param}, session: valid_session
       expect(assigns(:team)).to eq(team)
@@ -84,18 +89,21 @@ RSpec.describe ActivityWatcher::TeamsController, type: :controller do
   describe "POST #create" do
     context "with valid params" do
       it "creates a new Team" do
+        controller.stub(:logged_in?) {true}
         expect {
           post :create, params: {team: valid_attributes}, session: valid_session
         }.to change(Team, :count).by(1)
       end
 
       it "assigns a newly created team as @team" do
+        controller.stub(:logged_in?) {true}
         post :create, params: {team: valid_attributes}, session: valid_session
         expect(assigns(:team)).to be_a(Team)
         expect(assigns(:team)).to be_persisted
       end
 
       it "redirects to the created team" do
+        controller.stub(:logged_in?) {true}
         post :create, params: {team: valid_attributes}, session: valid_session
         expect(response).to redirect_to(Team.last)
       end
@@ -103,11 +111,13 @@ RSpec.describe ActivityWatcher::TeamsController, type: :controller do
 
     context "with invalid params" do
       it "assigns a newly created but unsaved team as @team" do
+        controller.stub(:logged_in?) {true}
         post :create, params: {team: invalid_attributes}, session: valid_session
         expect(assigns(:team)).to be_a_new(Team)
       end
 
       it "re-renders the 'new' template" do
+        controller.stub(:logged_in?) {true}
         post :create, params: {team: invalid_attributes}, session: valid_session
         expect(response).to render_template("new")
       end
@@ -125,6 +135,7 @@ RSpec.describe ActivityWatcher::TeamsController, type: :controller do
       }
 
       it "updates the requested team" do
+        controller.stub(:logged_in?) {true}
         team = Team.create! valid_attributes
         put :update, params: {id: team.to_param, team: new_attributes}, session: valid_session
         team.reload
@@ -136,12 +147,14 @@ RSpec.describe ActivityWatcher::TeamsController, type: :controller do
       end
 
       it "assigns the requested team as @team" do
+        controller.stub(:logged_in?) {true}
         team = Team.create! valid_attributes
         put :update, params: {id: team.to_param, team: valid_attributes}, session: valid_session
         expect(assigns(:team)).to eq(team)
       end
 
       it "redirects to the team" do
+        controller.stub(:logged_in?) {true}
         team = Team.create! valid_attributes
         put :update, params: {id: team.to_param, team: valid_attributes}, session: valid_session
         expect(response).to redirect_to(team)
@@ -150,12 +163,14 @@ RSpec.describe ActivityWatcher::TeamsController, type: :controller do
 
     context "with invalid params" do
       it "assigns the team as @team" do
+        controller.stub(:logged_in?) {true}
         team = Team.create! valid_attributes
         put :update, params: {id: team.to_param, team: invalid_attributes}, session: valid_session
         expect(assigns(:team)).to eq(team)
       end
 
       it "re-renders the 'edit' template" do
+        controller.stub(:logged_in?) {true}
         team = Team.create! valid_attributes
         put :update, params: {id: team.to_param, team: invalid_attributes}, session: valid_session
         expect(response).to render_template("edit")
@@ -165,6 +180,7 @@ RSpec.describe ActivityWatcher::TeamsController, type: :controller do
 
   describe "DELETE #destroy" do
     it "destroys the requested team" do
+      controller.stub(:logged_in?) {true}
       team = Team.create! valid_attributes
       expect {
         delete :destroy, params: {id: team.to_param}, session: valid_session
@@ -172,6 +188,7 @@ RSpec.describe ActivityWatcher::TeamsController, type: :controller do
     end
 
     it "redirects to the teams list" do
+      controller.stub(:logged_in?) {true}
       team = Team.create! valid_attributes
       delete :destroy, params: {id: team.to_param}, session: valid_session
       expect(response).to redirect_to(teams_url)

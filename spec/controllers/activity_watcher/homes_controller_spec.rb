@@ -21,6 +21,7 @@ RSpec.describe ActivityWatcher::HomesController, type: :controller do
 
   describe "GET #index" do
     it "assigns all teams as @teams" do
+      controller.stub(:logged_in?) {true}
       team = Team.create! valid_attributes
       get :index, params: {}, session: valid_session
       expect(assigns(:teams)).to eq([team])

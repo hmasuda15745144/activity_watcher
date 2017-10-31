@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   get 'users/registration', to: 'sessions#registration', as: 'user_registration'
   patch 'users/registration', to: 'sessions#confirmation'
   
-  namespace :activity_watcher, path: 'activity-watcher' do
-    get '/', to: 'homes#index'
+  namespace :activity_watcher, path: 'activity-watcher', as: "" do
+    get '/', to: 'homes#index', as: 'activity_watcher'
     resources :members
     resources :teams
   end

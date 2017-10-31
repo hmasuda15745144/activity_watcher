@@ -46,6 +46,7 @@ RSpec.describe ActivityWatcher::MembersController, type: :controller do
 
   describe "GET #index" do
     it "assigns all members as @members" do
+      controller.stub(:logged_in?) {true}
       member = Member.create! valid_attributes
       get :index, params: {}, session: valid_session
       expect(assigns(:members)).to eq([member])
@@ -54,6 +55,7 @@ RSpec.describe ActivityWatcher::MembersController, type: :controller do
 
   describe "GET #show" do
     it "assigns the requested member as @member" do
+      controller.stub(:logged_in?) {true}
       member = Member.create! valid_attributes
       get :show, params: {id: member.to_param}, session: valid_session
       expect(assigns(:member)).to eq(member)
@@ -62,6 +64,7 @@ RSpec.describe ActivityWatcher::MembersController, type: :controller do
 
   describe "GET #new" do
     it "assigns a new member as @member" do
+      controller.stub(:logged_in?) {true}
       get :new, params: {}, session: valid_session
       expect(assigns(:member)).to be_a_new(Member)
     end
@@ -69,6 +72,7 @@ RSpec.describe ActivityWatcher::MembersController, type: :controller do
 
   describe "GET #edit" do
     it "assigns the requested member as @member" do
+      controller.stub(:logged_in?) {true}
       member = Member.create! valid_attributes
       get :edit, params: {id: member.to_param}, session: valid_session
       expect(assigns(:member)).to eq(member)
@@ -78,18 +82,21 @@ RSpec.describe ActivityWatcher::MembersController, type: :controller do
   describe "POST #create" do
     context "with valid params" do
       it "creates a new Member" do
+        controller.stub(:logged_in?) {true}
         expect {
           post :create, params: {member: valid_attributes}, session: valid_session
         }.to change(Member, :count).by(1)
       end
 
       it "assigns a newly created member as @member" do
+        controller.stub(:logged_in?) {true}
         post :create, params: {member: valid_attributes}, session: valid_session
         expect(assigns(:member)).to be_a(Member)
         expect(assigns(:member)).to be_persisted
       end
 
       it "redirects to the created member" do
+        controller.stub(:logged_in?) {true}
         post :create, params: {member: valid_attributes}, session: valid_session
         expect(response).to redirect_to(Member.last)
       end
@@ -97,11 +104,13 @@ RSpec.describe ActivityWatcher::MembersController, type: :controller do
 
     context "with invalid params" do
       it "assigns a newly created but unsaved member as @member" do
+        controller.stub(:logged_in?) {true}
         post :create, params: {member: invalid_attributes}, session: valid_session
         expect(assigns(:member)).to be_a_new(Member)
       end
 
       it "re-renders the 'new' template" do
+        controller.stub(:logged_in?) {true}
         post :create, params: {member: invalid_attributes}, session: valid_session
         expect(response).to render_template("new")
       end
@@ -119,6 +128,7 @@ RSpec.describe ActivityWatcher::MembersController, type: :controller do
       }
 
       it "updates the requested member" do
+        controller.stub(:logged_in?) {true}
         member = Member.create! valid_attributes
         put :update, params: {id: member.to_param, member: new_attributes}, session: valid_session
         member.reload
@@ -130,12 +140,14 @@ RSpec.describe ActivityWatcher::MembersController, type: :controller do
       end
 
       it "assigns the requested member as @member" do
+        controller.stub(:logged_in?) {true}
         member = Member.create! valid_attributes
         put :update, params: {id: member.to_param, member: valid_attributes}, session: valid_session
         expect(assigns(:member)).to eq(member)
       end
 
       it "redirects to the member" do
+        controller.stub(:logged_in?) {true}
         member = Member.create! valid_attributes
         put :update, params: {id: member.to_param, member: valid_attributes}, session: valid_session
         expect(response).to redirect_to(member)
@@ -144,12 +156,14 @@ RSpec.describe ActivityWatcher::MembersController, type: :controller do
 
     context "with invalid params" do
       it "assigns the member as @member" do
+        controller.stub(:logged_in?) {true}
         member = Member.create! valid_attributes
         put :update, params: {id: member.to_param, member: invalid_attributes}, session: valid_session
         expect(assigns(:member)).to eq(member)
       end
 
       it "re-renders the 'edit' template" do
+        controller.stub(:logged_in?) {true}
         member = Member.create! valid_attributes
         put :update, params: {id: member.to_param, member: invalid_attributes}, session: valid_session
         expect(response).to render_template("edit")
@@ -159,6 +173,7 @@ RSpec.describe ActivityWatcher::MembersController, type: :controller do
 
   describe "DELETE #destroy" do
     it "destroys the requested member" do
+      controller.stub(:logged_in?) {true}
       member = Member.create! valid_attributes
       expect {
         delete :destroy, params: {id: member.to_param}, session: valid_session
@@ -166,6 +181,7 @@ RSpec.describe ActivityWatcher::MembersController, type: :controller do
     end
 
     it "redirects to the members list" do
+      controller.stub(:logged_in?) {true}
       member = Member.create! valid_attributes
       delete :destroy, params: {id: member.to_param}, session: valid_session
       expect(response).to redirect_to(members_url)
