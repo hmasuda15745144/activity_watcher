@@ -1,4 +1,4 @@
-class HomeController < ApplicationController
+class ActivityWatcher::HomesController < ActivityWatcher::Base
   def index
     @teams = Team.all
 

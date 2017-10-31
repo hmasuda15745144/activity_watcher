@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe HomeController, type: :controller do
+RSpec.describe ActivityWatcher::HomesController, type: :controller do
   let(:valid_attributes) {
     {
       name:    'name',
