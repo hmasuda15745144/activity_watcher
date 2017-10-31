@@ -1,6 +1,6 @@
 require 'octokit'
 
-class TeamsController < ApplicationController
+class ActivityWatcher::TeamsController < ActivityWatcher::Base
   before_action :set_team, only: [:show, :edit, :update, :destroy]
 
   # GET /teams
@@ -12,7 +12,7 @@ class TeamsController < ApplicationController
   # GET /teams/1
   # GET /teams/1.json
   def show
-    client = Octokit::Client.new
+    client = Octokit::Client.new access_token: ENV['GITHUB_ACCESS_TOKEN']
     repo = @team.source.match(/.*\/(.*\/.*)/)[1]
     contributors = client.contributors(repo)
     @contributors = contributors
