@@ -19,3 +19,6 @@ deploy:
   app: github-activity-watcher
   on:
     repo: chubachi-pt-2017/activity_watcher-2
+  run:
+    - bundle exec db:migrate
+    - bundle exec db:seed
