@@ -1,0 +1,23 @@
+language: ruby
+services:
+- postgresql
+bundler_args: "--without development --deployment"
+cache: bundler
+before_script:
+- cp config/database.travis.yml config/database.yml
+- bundle exec rake db:setup
+script:
+- bundle exec rspec spec/
+env:
+  global:
+    - secure: "0OpGMjkQ1yGuNx2HYCMPV2n+quWy+5lhZQf/40lnHItXfbnHUioZjgDxHHhz7/TLu5Bub0LtqE0dhvY/c+s6GIfRUaxkwhxRgA9kjj+RVyvlfpKgqHyMAhEsLL68iXdytdPFBZm0Zh7I3SeeTBOSSvPM6UmDfvZZR/7H/aufLjT4Lb4P/Wek7nK8UwtG29X+MqC22Dc6j5MxFa38mifzhiNl/STxMbsMd3vTgs6wbia1hWVik/UQLegQ8tbE26d+K9r0dBomRUtlXkJRQBFjxsR82FM+M0NaF39eZoAK10F3itT+6ko0dGirzoXnK0N6bJjl5Mfy8RaRdLst4BJSfD7k5BWaLj4wqD+EpdcDQI+Wf2ZPZaiR9aLHkVVTR8oPDNp8M6cQUZJd0EP8XcWneZp3QMgD6IdsQ/S+xOHjtAoO8usxDGQpVhqXF1vhimN67oadzsEGQNpw2UfmtJFBQPLgPDF/v0VkN4qn3dEbhvTiMQzPyKmItqNaDVdUMM2XjGRkf6yIwPatgSPIjS/X6+DDax7rO0ADi5kxBJTc3THXZVMpPtAPH0foTIEWnPTbCuAJaqSzKSatxOeJwMbmes6tG4a1TtgMWx2JzYG/LSGMkpPAyZ6jiX2xBFZCPPdVh19DpVGXuiRiUMREMvI3mZfctxfKMFrurPeawzTp2sA="
+deploy:
+  provider: heroku
+  api_key:
+    secure: '09M6573nQBg9JpBmCob4nRZc2S16xTuZwgdu/y762YxhfPPzKLqMLz2NpP1ZMNFUaBdeUmGGHqQOPToMSYR9vvKYo0YZA67lkuLFN8zYMtSaD9SDdiWOoWD+v4rbEVQKvQhKTqQ+/MyyW6AF7IR2mPwu2JytwulxHzpt7WWpmoujKt++52uj41ZjcWANiEarSp4rhxnBLTxzQbrLGf2Bdw/pUTtxh01bKwvhb9B8FxajbCxOkV3YTq5SNNFTB+4dTgfPKVOauBBj42XkFhuIV/aqJnVmlBS/885UXkxYTj7sVygzVsWi15gHo6J5MKhYcgcBFOCCkDTwie5wK+ZyXLH1yTjhSZlnaC4qDtLsardeVTJWT0vae5OWYmDIexxYeXkLaz3SS5goRT5kV/cHbSS6SuPq25EIF5+FUGibebu5ZdSDosW+rDVFTgJTNuO16KIK5iPovVFrNoFyDCjbBZVchQn4qzPcN3r/CTUuM4xJ5rkQWsilT6tluVD6rSFqpGicSilPJ58XW9v5AYbHPqBVfp07ZyU8/YQc9XBoGXq1rRScSqBknKGA4ukN3Ijw/li5iMqRT8KwlxiShSHfpIMQVLShsnRRa/x5lbPeyEf+kg5GQ2yTSS1q2nJIRcbA0hFeFlu46ekX6pbxpyEGmJJEk+hrwtoACyu4wtCwOAE='
+  app: github-activity-watcher
+  on:
+    repo: chubachi-pt-2017/activity_watcher-2
+  # run:
+  #   - 'bundle exec rake db:migrate'
+  #   - 'bundle exec rake db:seed'
