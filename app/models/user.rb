@@ -4,7 +4,7 @@ class User < ApplicationRecord
     create! do |user|
       user.provider = auth['provider']
       user.uid = auth['uid']
-      user.name = auth['info']['nickname']
+      user.user_name = auth['info']['nickname']
       user.oauth_token = auth['credentials']['token']
     end
   end
