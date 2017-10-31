@@ -19,7 +19,7 @@ class ActivityWatcher::HomesController < ActivityWatcher::Base
   end
 
   def contributors(repo)
-    client = Octokit::Client.new
+    client = Octokit::Client.new access_token: ENV['GITHUB_ACCESS_TOKEN']
     contributors = []
     client.contributors(repo).each do |contributor|
       name = find_name_by_login_from_member(contributor[:login])
