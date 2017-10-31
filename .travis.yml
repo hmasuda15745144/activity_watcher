@@ -18,6 +18,6 @@ deploy:
   app: github-activity-watcher
   on:
     repo: chubachi-pt-2017/activity_watcher-2
-  run:
-    - 'bundle exec rake db:migrate'
-    - 'bundle exec rake db:seed'
+  # run:
+  #   - 'bundle exec rake db:migrate'
+  #   - 'bundle exec rake db:seed'
