@@ -7,6 +7,16 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+    models:
+      user: 利用者情報
+    attributes:
+      user:
+        user_name: GitHubユーザ名
+        email: メールアドレス
+        user_full_name: 氏名(フルネーム)
+        university_id: 所属大学
+        slack_user: slackアカウント名
+        student_no: 学生番号
   date:
     abbr_day_names:
     - 日
