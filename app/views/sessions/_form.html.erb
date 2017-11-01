@@ -1,0 +1,111 @@
+<%= form_for @user, url: { action: 'confirmation' }, html: { class: 'form-horizontal' } do |f| %>
+  <h4><p>初回のみ利用者情報を登録してください</p></h4><br/ >
+  <% if !f.object.confirmation? %>
+    <div class="form-group">
+      <%= f.label :email, class: "col-sm-2 control-label" %>
+      <div class="col-sm-5">
+        <%= f.text_field :email, class: 'form-control'%>
+        <% if @user.errors.full_messages_for(:email).any? %>
+          <div class="field_with_errors">
+            <% @user.errors.full_messages_for(:email).each do |msg| %>
+              <ul>
+                <li><span style="color: red;"><%= msg %></span></li>
+              </ul>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :user_full_name, class: "col-sm-2 control-label" %>
+      <div class="col-sm-5">
+        <%= f.text_field :user_full_name, class: 'form-control'%>
+        <% if @user.errors.full_messages_for(:user_full_name).any? %>
+          <div class="field_with_errors">
+            <% @user.errors.full_messages_for(:user_full_name).each do |msg| %>
+              <ul>
+                <li><span style="color: red;"><%= msg %></span></li>
+              </ul>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :university_id, class: "col-sm-2 control-label" %>
+      <div class="col-sm-3">
+        <%= f.collection_select :university_id, University.all, :id, :name, {}, { class: 'form-control' } %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :slack_user, class: "col-sm-2 control-label" %>
+      <div class="col-sm-5">
+        <%= f.text_field :slack_user, class: 'form-control'%>
+        <% if @user.errors.full_messages_for(:slack_user).any? %>
+          <div class="field_with_errors">
+            <% @user.errors.full_messages_for(:slack_user).each do |msg| %>
+              <ul>
+                <li><span style="color: red;"><%= msg %></span></li>
+              </ul>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :student_no, class: "col-sm-2 control-label" %>
+      <div class="col-sm-5">
+        <%= f.text_field :student_no, class: 'form-control'%>
+        <% if @user.errors.full_messages_for(:student_no).any? %>
+          <div class="field_with_errors">
+            <% @user.errors.full_messages_for(:student_no).each do |msg| %>
+              <ul>
+                <li><span style="color: red;"><%= msg %></span></li>
+              </ul>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% else %>
+    <div class="form-group">
+      <%= f.label :email, class: "col-sm-2 control-label" %>
+      <div class="col-sm-5">
+        <%= @user.email %>
+      </div>
+      <%= f.hidden_field :email %>
+    </div>
+    <div class="form-group">
+      <%= f.label :user_full_name, class: "col-sm-2 control-label" %>
+      <div class="col-sm-5">
+        <%= @user.user_full_name %>
+      </div>
+      <%= f.hidden_field :user_full_name %>
+    </div>
+    <div class="form-group">
+      <%= f.label :university_id, class: "col-sm-2 control-label" %>
+      <div class="col-sm-5">
+        <%= University.find(@user.university_id).name %>
+      </div>
+      <%= f.hidden_field :university_id %>
+    </div>
+    <div class="form-group">
+      <%= f.label :slack_user, class: "col-sm-2 control-label" %>
+      <div class="col-sm-5">
+        <%= @user.slack_user %>
+      </div>
+      <%= f.hidden_field :slack_user %>
+    </div>
+    <div class="form-group">
+      <%= f.label :student_no, class: "col-sm-2 control-label" %>
+      <div class="col-sm-5">
+        <%= @user.student_no %>
+      </div>
+      <%= f.hidden_field :student_no %>
+    </div>
+  <% end %>
+  <br/ >
+  <%= f.submit f.object.confirmation? ? "登録する" : "確認する", class: "btn btn-primary", style: "margin-left: 100px;" %>
+  <%= f.submit '戻る', class: "btn btn-default", style: "margin-left: 100px;" if f.object.confirmation? %>
+  <%= f.hidden_field :confirmed %>
+<% end %>
