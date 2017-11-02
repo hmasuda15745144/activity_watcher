@@ -1,5 +1,5 @@
 <%= form_for @user, url: { action: 'confirmation' }, html: { class: 'form-horizontal' } do |f| %>
-  <h4><p>初回のみ利用者情報を登録してください</p></h4><br/ >
+  <h4><p>利用者情報を登録してください</p></h4><br/ >
   <% if !f.object.confirmation? %>
     <div class="form-group">
       <%= f.label :email, class: "col-sm-2 control-label" %>
@@ -7,11 +7,11 @@
         <%= f.text_field :email, class: 'form-control'%>
         <% if @user.errors.full_messages_for(:email).any? %>
           <div class="field_with_errors">
-            <% @user.errors.full_messages_for(:email).each do |msg| %>
-              <ul>
-                <li><span style="color: red;"><%= msg %></span></li>
-              </ul>
-            <% end %>
+            <ul>
+              <% @user.errors.full_messages_for(:email).each do |msg| %>
+                  <li><span style="color: red;"><%= msg %></span></li>
+              <% end %>
+            </ul>
           </div>
         <% end %>
       </div>
@@ -22,11 +22,11 @@
         <%= f.text_field :user_full_name, class: 'form-control'%>
         <% if @user.errors.full_messages_for(:user_full_name).any? %>
           <div class="field_with_errors">
-            <% @user.errors.full_messages_for(:user_full_name).each do |msg| %>
-              <ul>
-                <li><span style="color: red;"><%= msg %></span></li>
-              </ul>
-            <% end %>
+            <ul>
+              <% @user.errors.full_messages_for(:user_full_name).each do |msg| %>
+                  <li><span style="color: red;"><%= msg %></span></li>
+              <% end %>
+            </ul>
           </div>
         <% end %>
       </div>
@@ -43,11 +43,11 @@
         <%= f.text_field :slack_user, class: 'form-control'%>
         <% if @user.errors.full_messages_for(:slack_user).any? %>
           <div class="field_with_errors">
-            <% @user.errors.full_messages_for(:slack_user).each do |msg| %>
-              <ul>
-                <li><span style="color: red;"><%= msg %></span></li>
-              </ul>
-            <% end %>
+            <ul>
+              <% @user.errors.full_messages_for(:slack_user).each do |msg| %>
+                  <li><span style="color: red;"><%= msg %></span></li>
+              <% end %>
+            </ul>
           </div>
         <% end %>
       </div>
@@ -58,11 +58,11 @@
         <%= f.text_field :student_no, class: 'form-control'%>
         <% if @user.errors.full_messages_for(:student_no).any? %>
           <div class="field_with_errors">
-            <% @user.errors.full_messages_for(:student_no).each do |msg| %>
-              <ul>
-                <li><span style="color: red;"><%= msg %></span></li>
-              </ul>
-            <% end %>
+            <ul>
+              <% @user.errors.full_messages_for(:student_no).each do |msg| %>
+                  <li><span style="color: red;"><%= msg %></span></li>
+              <% end %>
+            </ul>
           </div>
         <% end %>
       </div>
