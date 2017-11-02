@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171101000656) do
+ActiveRecord::Schema.define(version: 20171102034955) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,10 +51,10 @@ ActiveRecord::Schema.define(version: 20171101000656) do
     t.string   "student_no",     limit: 64,  default: "", null: false
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["email"], name: "index_users_on_email", using: :btree
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true, using: :btree
-    t.index ["slack_user"], name: "index_users_on_slack_user", unique: true, using: :btree
-    t.index ["university_id", "student_no"], name: "index_users_on_university_id_and_student_no", unique: true, using: :btree
+    t.index ["slack_user"], name: "index_users_on_slack_user", using: :btree
+    t.index ["university_id", "student_no"], name: "index_users_on_university_id_and_student_no", using: :btree
     t.index ["user_name"], name: "index_users_on_user_name", unique: true, using: :btree
   end
 
