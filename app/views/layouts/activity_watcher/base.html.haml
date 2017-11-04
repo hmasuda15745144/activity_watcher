@@ -2,7 +2,7 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title Team Activity Watcher
+    %title Activity Watcher
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
@@ -15,7 +15,7 @@
       = link_to 'Heroku', 'https://github-activity-watcher.herokuapp.com/'
       |
       = link_to 'Sign out', users_logout_path
-      %h1 Team Activity Watcher
+      %h1 Activity Watcher
       %navi
         = nav do
           = link_to 'Home', activity_watcher_path
@@ -25,4 +25,4 @@
       = yield
     %footer
       %hr
-      Copyright (C) Y.Chubachi 2016
+      Copyright (C) Y.Chubachi_PBL 2017
