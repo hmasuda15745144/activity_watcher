@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
 
     user = User.find_by(provider: auth['provider'], uid: auth['uid']) || User.create_with_omniauth(auth)
     session[:user_id] = user.id
-    if user.email == ""
+    if user.user_full_name == ""
       redirect_to user_registration_url
     else
       redirect_to activity_watcher_url

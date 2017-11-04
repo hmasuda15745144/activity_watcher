@@ -2,6 +2,8 @@ class User < ApplicationRecord
   
   include ActiveRecord::Confirmable
   
+  enum authority: { Student: 1, Teacher: 2, Reviewer: 3 }
+  
   with_options if: :user_registration_context do
     VALID_EMAIL_DEFAULT = /\A\S+@\S+\.\S+\z/
     validates :email,
@@ -20,6 +22,7 @@ class User < ApplicationRecord
       
     validates :student_no,
       presence: true,
+      uniqueness: { scope: [:university_id] },
       length: { maximum: 64 }
   end
   
@@ -28,6 +31,7 @@ class User < ApplicationRecord
       user.provider = auth['provider']
       user.uid = auth['uid']
       user.user_name = auth['info']['nickname']
+      user.email = auth['info']['email']
       user.oauth_token = auth['credentials']['token']
     end
   end

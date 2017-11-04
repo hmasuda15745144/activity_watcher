@@ -1,5 +1,12 @@
 <%= form_for @user, url: { action: 'confirmation' }, html: { class: 'form-horizontal' } do |f| %>
   <h4><p>利用者情報を登録してください</p></h4><br/ >
+  <div class="form-group">
+    <%= f.label :user_name, class: "col-sm-2 control-label" %>
+    <div class="col-sm-5">
+      <%= @user.user_name %>
+    </div>
+    <%= f.hidden_field :email %>
+  </div>
   <% if !f.object.confirmation? %>
     <div class="form-group">
       <%= f.label :email, class: "col-sm-2 control-label" %>
