@@ -4,6 +4,8 @@ class User < ApplicationRecord
   
   enum authority: { Student: 1, Teacher: 2, Reviewer: 3 }
   
+  attr_accessor :faculty_password   #教職員用の認証パスワード(テーブルには存在しない)
+  
   with_options if: :user_registration_context do
     VALID_EMAIL_DEFAULT = /\A\S+@\S+\.\S+\z/
     validates :email,
@@ -23,7 +25,9 @@ class User < ApplicationRecord
     validates :student_no,
       presence: true,
       uniqueness: { scope: [:university_id] },
-      length: { maximum: 64 }
+      length: { maximum: 64 },  unless: 'authority != "Student"'  #受講生の場合
+      
+    validate :faculty_password_valid
   end
   
   def self.create_with_omniauth(auth)
@@ -38,6 +42,16 @@ class User < ApplicationRecord
   
   def user_registration_context
     validation_context == :user_registration
+  end
+  
+  def faculty_password_valid
+    if authority != "Student"
+      if faculty_password.blank?
+        errors.add(:faculty_password, "を入力してください")
+      elsif faculty_password != ENV['FACULTY_PASSWORD']
+        errors.add(:faculty_password, "が正しくありません")
+      end
+    end
   end
   
 end

@@ -5,7 +5,6 @@
     <div class="col-sm-5">
       <%= @user.user_name %>
     </div>
-    <%= f.hidden_field :email %>
   </div>
   <% if !f.object.confirmation? %>
     <div class="form-group">
@@ -74,6 +73,27 @@
         <% end %>
       </div>
     </div>
+    <div class="form-group">
+      <%= f.label :authority, class: "col-sm-2 control-label" %>
+      <div class="col-sm-3">
+        <%= f.select :authority, User.authorities_i18n.invert, {}, class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :faculty_password, class: "col-sm-2 control-label" %>
+      <div class="col-sm-5">
+        <%= f.password_field :faculty_password, class: 'form-control'%>
+        <% if @user.errors.full_messages_for(:faculty_password).any? %>
+          <div class="field_with_errors">
+            <ul>
+              <% @user.errors.full_messages_for(:faculty_password).each do |msg| %>
+                  <li><span style="color: red;"><%= msg %></span></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+      </div>
+    </div>
   <% else %>
     <div class="form-group">
       <%= f.label :email, class: "col-sm-2 control-label" %>
@@ -109,6 +129,14 @@
         <%= @user.student_no %>
       </div>
       <%= f.hidden_field :student_no %>
+    </div>
+    <div class="form-group">
+      <%= f.label :authority, class: "col-sm-2 control-label" %>
+      <div class="col-sm-5">
+        <%= @user.authority_i18n %>
+      </div>
+      <%= f.hidden_field :authority %>
+      <%= f.hidden_field :faculty_password %>
     </div>
   <% end %>
   <br/ >
