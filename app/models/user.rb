@@ -4,7 +4,7 @@ class User < ApplicationRecord
   
   enum authority: { Student: 1, Teacher: 2, Reviewer: 3 }
   
-  attr_accessor :faculty_password   #教職員用の認証パスワード(テーブルには存在しない)
+  attr_accessor :teachers_password   #教職員用の認証パスワード(テーブルには存在しない)
   
   with_options if: :user_registration_context do
     VALID_EMAIL_DEFAULT = /\A\S+@\S+\.\S+\z/
@@ -21,15 +21,19 @@ class User < ApplicationRecord
     validates :slack_user, 
       presence: true,
       length: { maximum: 64 }
-      
+  end
+  
+  with_options if: :user_registration_context_is_student do
     validates :student_no,
       presence: true,
       uniqueness: { scope: [:university_id] },
-      length: { maximum: 64 },  unless: 'authority != "Student"'  #受講生の場合
-      
-    validate :faculty_password_valid
+      length: { maximum: 64 }
   end
   
+  with_options if: :user_registration_context_is_not_student do
+    validate :teachers_password_valid
+  end
+
   def self.create_with_omniauth(auth)
     create! do |user|
       user.provider = auth['provider']
@@ -44,13 +48,23 @@ class User < ApplicationRecord
     validation_context == :user_registration
   end
   
-  def faculty_password_valid
-    if authority != "Student"
-      if faculty_password.blank?
-        errors.add(:faculty_password, "を入力してください")
-      elsif faculty_password != ENV['FACULTY_PASSWORD']
-        errors.add(:faculty_password, "が正しくありません")
-      end
+  def user_registration_context_is_student
+    user_registration_context && is_student?
+  end
+  
+  def user_registration_context_is_not_student
+    user_registration_context && !is_student?
+  end
+  
+  def is_student?
+    authority == "Student"
+  end
+  
+  def teachers_password_valid
+    if teachers_password.blank?
+      errors.add(:teachers_password, "を入力してください")
+    elsif teachers_password != ENV['TEACHERS_PASSWORD']
+      errors.add(:teachers_password, "が正しくありません")
     end
   end
   
