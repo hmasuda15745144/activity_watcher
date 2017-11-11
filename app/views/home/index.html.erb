@@ -1,11 +1,4 @@
-<% @tasks.each do |task| %>
-   <div style="width:500px;border:1px solid #ccc;margin:5px">
-     <div style="float:left">
-     <h2 ><%= link_to task.title, page_path(task) %></h2>
-     </div>
-     <div style="clear:both">
-       <pre><%= task.content %></pre>
-      
-     </div>
-   </div>
- <% end %>
+<h4><p>Githubのアカウントでログインする</p></h4>
+<%= link_to '/auth/github' do %>
+  <button type="button" class="btn btn-primary">Sign in with GitHub</button>
+<% end %>
