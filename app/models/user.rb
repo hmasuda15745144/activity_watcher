@@ -53,11 +53,19 @@ class User < ApplicationRecord
   end
   
   def user_registration_context_is_not_student
-    user_registration_context && !is_student?
+    user_registration_context && (is_teacher? || is_reviewer?)
   end
   
   def is_student?
     authority == "Student"
+  end
+  
+  def is_teacher?
+    authority == "Teacher"
+  end
+  
+  def is_reviewer?
+    authority == "Reviewer"
   end
   
   def teachers_password_valid
