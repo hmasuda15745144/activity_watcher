@@ -1,0 +1,31 @@
+.sidebar {
+  float: left;
+  font-size: 14px;
+
+  &__wrap {
+    width: 200px;
+    background: #2c9a7a;
+    height: 1000px;
+  }
+
+  &__menu-wrap {
+    padding: 15px;
+  }
+
+  &__items {
+    height: 50px;
+  }
+
+  &__item {
+    padding: 10px;
+  }
+
+  &__action {
+    margin-left: 10px;
+  }
+
+  a {
+    color: #f0f0f0;
+    text-decoration: none;
+  }
+}
