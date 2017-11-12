@@ -81,7 +81,7 @@ class User < ApplicationRecord
   def email_domain_valid
     return if email.blank?
     email_domain = University.find_by(id: university_id).email_domain
-    valid_email_domain = /\A[\w+-.]+@+#{email_domain}\z/
+    valid_email_domain = /\A[\w+-.]+@#{email_domain}\z/
     unless email.match(valid_email_domain)
       errors.add(:email, "のドメインが正しくありません")
     end
