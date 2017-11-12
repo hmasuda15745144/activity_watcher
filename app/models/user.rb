@@ -13,7 +13,9 @@ class User < ApplicationRecord
       uniqueness: true,
       length: { maximum: 128 },
       format: { with: VALID_EMAIL_DEFAULT, message: "は正しいアドレスではありません" }
-      
+    
+    validate :email_domain_valid
+
     validates :user_full_name,
       presence: true,
       length: { maximum: 64 }
@@ -73,6 +75,15 @@ class User < ApplicationRecord
       errors.add(:teachers_password, "を入力してください")
     elsif teachers_password != ENV['TEACHERS_PASSWORD']
       errors.add(:teachers_password, "が正しくありません")
+    end
+  end
+  
+  def email_domain_valid
+    return if email.blank?
+    email_domain = University.find_by(id: university_id).email_domain
+    valid_email_domain = /\A[\w+\-.]+@+#{email_domain}/i
+    unless email.match(valid_email_domain)
+      errors.add(:email, "のドメインが正しくありません")
     end
   end
   
