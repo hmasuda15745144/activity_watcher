@@ -12,7 +12,7 @@ class User < ApplicationRecord
       presence: true,
       uniqueness: true,
       length: { maximum: 128 },
-      format: { with: VALID_EMAIL_DEFAULT, message: "は正しいアドレスではありません" }
+      format: { with: VALID_EMAIL_DEFAULT, message: "は正しいアドレスではありません", allow_blank: true }
     
     validate :email_domain_valid
 
@@ -81,7 +81,7 @@ class User < ApplicationRecord
   def email_domain_valid
     return if email.blank?
     email_domain = University.find_by(id: university_id).email_domain
-    valid_email_domain = /\A[\w+\-.]+@+#{email_domain}/i
+    valid_email_domain = /\A[\w+-.]+@+#{email_domain}\z/
     unless email.match(valid_email_domain)
       errors.add(:email, "のドメインが正しくありません")
     end
