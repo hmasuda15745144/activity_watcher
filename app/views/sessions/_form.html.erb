@@ -1,5 +1,11 @@
 <%= form_for @user, url: { action: 'confirmation' }, html: { class: 'form-horizontal' } do |f| %>
   <h4><p>利用者情報を登録してください</p></h4><br/ >
+  <div class="form-group">
+    <%= f.label :user_name, class: "col-sm-2 control-label" %>
+    <div class="col-sm-5">
+      <%= @user.user_name %>
+    </div>
+  </div>
   <% if !f.object.confirmation? %>
     <div class="form-group">
       <%= f.label :email, class: "col-sm-2 control-label" %>
@@ -67,6 +73,27 @@
         <% end %>
       </div>
     </div>
+    <div class="form-group">
+      <%= f.label :authority, class: "col-sm-2 control-label" %>
+      <div class="col-sm-3">
+        <%= f.select :authority, User.authorities_i18n.invert, {}, class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :teachers_password, class: "col-sm-2 control-label" %>
+      <div class="col-sm-5">
+        <%= f.password_field :teachers_password, class: 'form-control'%>
+        <% if @user.errors.full_messages_for(:teachers_password).any? %>
+          <div class="field_with_errors">
+            <ul>
+              <% @user.errors.full_messages_for(:teachers_password).each do |msg| %>
+                  <li><span style="color: red;"><%= msg %></span></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+      </div>
+    </div>
   <% else %>
     <div class="form-group">
       <%= f.label :email, class: "col-sm-2 control-label" %>
@@ -102,6 +129,14 @@
         <%= @user.student_no %>
       </div>
       <%= f.hidden_field :student_no %>
+    </div>
+    <div class="form-group">
+      <%= f.label :authority, class: "col-sm-2 control-label" %>
+      <div class="col-sm-5">
+        <%= @user.authority_i18n %>
+      </div>
+      <%= f.hidden_field :authority %>
+      <%= f.hidden_field :teachers_password %>
     </div>
   <% end %>
   <br/ >

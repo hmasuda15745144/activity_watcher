@@ -31,7 +31,7 @@ module ActivityWatcher
     # Set generator
     config.generators do |g|
       g.orm :active_record
-      g.template_engine :haml
+      g.template_engine :erb
       g.test_framework :rspec, :fixture => true
       g.fixture_replacement :factory_girl, :dir => "spec/factories"
       g.view_specs false
@@ -39,7 +39,7 @@ module ActivityWatcher
       g.routing_specs false
       g.helper_specs false
       g.request_specs false
-      g.assets false
+      g.assets true
       g.helper false
     end
   

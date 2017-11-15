@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
 
     user = User.find_by(provider: auth['provider'], uid: auth['uid']) || User.create_with_omniauth(auth)
     session[:user_id] = user.id
-    if user.email == ""
+    if user.registration_confirmed_flg == false
       redirect_to user_registration_url
     else
       redirect_to activity_watcher_url
@@ -28,6 +28,7 @@ class SessionsController < ApplicationController
     params[:user][:confirmed] = false if params[:commit] == "戻る"
     @user.attributes = confirmation_params
     if @user.save(context: :user_registration)
+      @user.update_attribute(:registration_confirmed_flg, true)
       redirect_to activity_watcher_url
     else
       render action: 'registration'
@@ -47,6 +48,8 @@ class SessionsController < ApplicationController
       :university_id,
       :slack_user,
       :student_no,
+      :authority,
+      :teachers_password,
       :confirmed
     )
   end

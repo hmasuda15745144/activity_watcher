@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+      <%= stylesheet_link_tag 'activity_watcher/application_activity_watcher', media: 'all' %>
+      <%= javascript_include_tag "activity_watcher/application" %>
+      <%= javascript_include_tag params[:controller] %>
+  
+      <title>Activity Watcher</title>
+      <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+    <!-- all wrap -->
+    <div class="all-wrap">
+      <%= render partial: 'layouts/common/sidebar'  %>
+
+      <div class="header"></div>
+      <!-- main-contents -->
+      <div class="contents">
+        <%= yield %>
+      </div>
+      <!-- /main-contents -->
+    </div>
+    <!-- /all wrap -->
+  </body>
+</html>

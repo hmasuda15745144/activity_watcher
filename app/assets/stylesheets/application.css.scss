@@ -2,6 +2,7 @@
 @import "bootswatch/yeti/variables";
 
 // Then bootstrap itself
+@import "bootstrap-sprockets";
 @import "bootstrap";
 
 // Bootstrap body padding for fixed navbar

@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171102034955) do
+ActiveRecord::Schema.define(version: 20171112062145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "courses", force: :cascade do |t|
+    t.string   "course_name"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "members", force: :cascade do |t|
     t.string   "login"
@@ -32,25 +38,28 @@ ActiveRecord::Schema.define(version: 20171102034955) do
   end
 
   create_table "universities", force: :cascade do |t|
-    t.string   "name",        limit: 64,  default: "", null: false
-    t.string   "name_en",     limit: 128, default: "", null: false
-    t.string   "description", limit: 256
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.string   "name",         limit: 64,  default: "", null: false
+    t.string   "name_en",      limit: 128, default: "", null: false
+    t.string   "description",  limit: 256
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.string   "email_domain", limit: 64,  default: "", null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "user_name",      limit: 64,  default: "", null: false
-    t.string   "provider",                   default: "", null: false
-    t.string   "uid",                        default: "", null: false
-    t.string   "oauth_token",                default: "", null: false
-    t.string   "email",          limit: 128, default: "", null: false
-    t.string   "user_full_name", limit: 64,  default: "", null: false
-    t.integer  "university_id",  limit: 2,   default: 1,  null: false
-    t.string   "slack_user",     limit: 64,  default: "", null: false
-    t.string   "student_no",     limit: 64,  default: "", null: false
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.string   "user_name",                  limit: 64,  default: "",    null: false
+    t.string   "provider",                               default: "",    null: false
+    t.string   "uid",                                    default: "",    null: false
+    t.string   "oauth_token",                            default: "",    null: false
+    t.string   "email",                      limit: 128, default: "",    null: false
+    t.string   "user_full_name",             limit: 64,  default: "",    null: false
+    t.integer  "university_id",              limit: 2,   default: 1,     null: false
+    t.string   "slack_user",                 limit: 64,  default: "",    null: false
+    t.string   "student_no",                 limit: 64
+    t.datetime "created_at",                                             null: false
+    t.datetime "updated_at",                                             null: false
+    t.integer  "authority",                  limit: 2,   default: 1,     null: false
+    t.boolean  "registration_confirmed_flg",             default: false
     t.index ["email"], name: "index_users_on_email", using: :btree
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true, using: :btree
     t.index ["slack_user"], name: "index_users_on_slack_user", using: :btree
