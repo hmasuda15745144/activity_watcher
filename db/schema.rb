@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171119011610) do
+ActiveRecord::Schema.define(version: 20171119053049) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,11 +74,13 @@ ActiveRecord::Schema.define(version: 20171119011610) do
   end
 
   create_table "teams", force: :cascade do |t|
-    t.string "name",            limit: 64,  default: "", null: false
-    t.string "description",     limit: 256
-    t.string "repository_name", limit: 128, default: "", null: false
-    t.string "service_url",     limit: 256
-    t.string "ci_url",          limit: 256
+    t.string   "name",            limit: 64,  default: "", null: false
+    t.string   "description",     limit: 256
+    t.string   "repository_name", limit: 128, default: "", null: false
+    t.string   "service_url",     limit: 256
+    t.string   "ci_url",          limit: 256
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
     t.index ["name"], name: "index_teams_on_name", unique: true, using: :btree
     t.index ["repository_name"], name: "index_teams_on_repository_name", unique: true, using: :btree
   end
@@ -118,7 +120,7 @@ ActiveRecord::Schema.define(version: 20171119011610) do
     t.datetime "created_at",                                            null: false
     t.datetime "updated_at",                                            null: false
     t.integer  "authority",                  limit: 2,  default: 1,     null: false
-    t.boolean  "registration_confirmed_flg",            default: false
+    t.boolean  "registration_confirmed_flg",            default: false, null: false
     t.index ["login_name"], name: "index_users_on_login_name", unique: true, using: :btree
     t.index ["login_provider", "uid"], name: "index_users_on_login_provider_and_uid", unique: true, using: :btree
     t.index ["slack_user"], name: "index_users_on_slack_user", using: :btree
